@@ -13,24 +13,39 @@ public class NormalCell {
 
     @Override
     public String toString() {
-        return display();
+        return isAlive() ? "" + this.age : ".";
     }
 
     public NormalCell next(List<NormalCell> neighbours) {
         var count = Query.where(neighbours, n -> n.isAlive()).size();
         var alive = (count == 2 && this.isAlive()) || count == 3;
         if (alive) {
-            return new NormalCell(age + 1);
+            return ageOneYear();
         } else {
+            boolean hasVampire = Query.any(neighbours, n -> n.isVampire());
+            if (isAlive() && hasVampire) {
+                return new VampireCell();
+            }
+            // if you are dying AND there is a neighbor that is a vampire
+            // become a vampire cell
+            // otherwise be a normal cell with age zero (dead)
             return new NormalCell(0);
         }
     }
 
-    private boolean isAlive() {
+    private NormalCell ageOneYear() {
+        if (99 <= age ) {
+            return new VampireCell();
+        }
+        return new NormalCell(age + 1);
+    }
+
+    public Boolean isVampire() {
+        return false;
+    }
+
+    public boolean isAlive() {
         return 0 < age;
     }
 
-    public String display() {
-        return isAlive() ? "" + this.age : ".";
-    }
 }

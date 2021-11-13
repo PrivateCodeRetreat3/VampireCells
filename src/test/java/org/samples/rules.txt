@@ -1,0 +1,12 @@
+Details:
+Non-vampire Lifecycle
+
+Birth: Dead cells with 3 live (non-vampire) neighbors will come alive next round
+- Staying Alive: Live cells with 2 or 3 neighbors of any type stay alive
+- Death by starvation: Live cells with 1 or less neighbors of any type die
+- Death by overpopulation: Live cells with 4 or more neighbors of any type die
+
+Vampire Lifecycle:
+- Birth by old age: a cell has been alive longer than 100 cycles, it becomes a "Vampire Cell"
+- Conversion: a non vampire cell that is dying next to 1 or more vampires becomes a vampire
+- Death by over population: a vampire cell with 2 or more vampires adjacent will die
