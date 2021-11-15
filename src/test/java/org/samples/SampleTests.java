@@ -23,7 +23,7 @@ public class SampleTests
   @Test
   public void testNeighborScenarios()
   {
-    final Cell [] possible = new Cell [] {new NormalCell (1), new NormalCell (0), new NormalCell (99), new VampireCell() };
+    final Cell [] possible = new Cell [] {new NormalCell (1), new DeadCell (), new NormalCell (99), new VampireCell() };
     CombinationApprovals.verifyAllCombinations(this::getNext, possible, new Integer[]{0, 1, 2, 3, 4}, new Integer[]{0, 1, 2, 3});
   }
   private String getNext(Cell center, Cell topLeft, Cell top, Cell topRight, Cell left,
@@ -41,7 +41,7 @@ public class SampleTests
       neighbors.add(new VampireCell());
     }
     for (int i = 0; i < deadNeighborCount; i++) {
-      neighbors.add(new NormalCell (0));
+      neighbors.add(new DeadCell ());
     }
     neighbors = List.of(NumberUtils.getShuffled(neighbors.toArray(new Cell [8]), 8));
     return center.next(neighbors).toString();
