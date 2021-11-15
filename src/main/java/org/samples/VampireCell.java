@@ -13,20 +13,14 @@ public class VampireCell implements Cell {
     public String toString() {
         return "V ";
     }
-
     @Override
-    public boolean isAlive() {
-        return false;
-    }
-
-    @Override
-    public Boolean isVampire() {
-        return true;
+    public CellType getType() {
+        return CellType.Vampire;
     }
 
     @Override
     public Cell next(List<Cell> neighbours) {
-        var count = Query.where(neighbours, n -> n.isVampire()).size();
+        var count = Query.where(neighbours, n -> n.getType() == CellType.Vampire).size();
         if (2 <= count) {
             return new DeadCell();
         }

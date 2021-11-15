@@ -6,18 +6,13 @@ import java.util.List;
 
 public class DeadCell implements Cell {
     @Override
-    public boolean isAlive() {
-        return false;
-    }
-
-    @Override
-    public Boolean isVampire() {
-        return false;
+    public CellType getType() {
+        return CellType.Dead;
     }
 
     @Override
     public Cell next(List<Cell> neighbours) {
-        var count = Query.where(neighbours, n -> n.isAlive()).size();
+        var count = Query.where(neighbours, n -> n.getType() == CellType.Alive).size();
         return count == 3 ? new AliveCell(1): new DeadCell();
     }
 

@@ -19,15 +19,13 @@ public class AliveCell implements Cell {
     }
 
     public Cell next(List<Cell> listOfNeighbours) {
-//        var neighbours = new Queryable<Cell>(Cell.class);
-//        neighbours.addAll(listOfNeighbours);
         var neighbours = Queryable.as(listOfNeighbours);
-        var count = neighbours.where(c -> c.isAlive()).size();
+        var count = neighbours.where(c -> c.getType() == CellType.Alive).size();
         var isAlive = 2 <= count && count <= 3;
         if (isAlive) {
             return ageOneYear();
         } else {
-            boolean isVampireNearby = neighbours.any(c -> c.isVampire());
+            boolean isVampireNearby = neighbours.any(c -> c.getType() == CellType.Vampire);
             return isVampireNearby ? new VampireCell() : new DeadCell();
         }
     }
@@ -39,12 +37,8 @@ public class AliveCell implements Cell {
         return new AliveCell(age + 1);
     }
 
-    public Boolean isVampire() {
-        return false;
+    @Override
+    public CellType getType() {
+            return CellType.Alive;
     }
-
-    public boolean isAlive() {
-       return true;
-    }
-
 }

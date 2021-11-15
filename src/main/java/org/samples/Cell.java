@@ -6,9 +6,7 @@ public interface Cell {
     @Override
     String toString();
 
-    boolean isAlive();
-
-    Boolean isVampire();
+    CellType getType();
 
     Cell next(List<Cell> neighbours);
 }
