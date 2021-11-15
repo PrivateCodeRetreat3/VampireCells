@@ -18,7 +18,7 @@ public class DeadCell implements Cell {
     @Override
     public Cell next(List<Cell> neighbours) {
         var count = Query.where(neighbours, n -> n.isAlive()).size();
-        return count == 3 ? new NormalCell(1): new DeadCell();
+        return count == 3 ? new AliveCell(1): new DeadCell();
     }
 
     @Override

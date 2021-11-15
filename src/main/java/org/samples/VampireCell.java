@@ -28,7 +28,7 @@ public class VampireCell implements Cell {
     public Cell next(List<Cell> neighbours) {
         var count = Query.where(neighbours, n -> n.isVampire()).size();
         if (2 <= count) {
-            return new NormalCell(0);
+            return new DeadCell();
         }
         return new VampireCell();
     }

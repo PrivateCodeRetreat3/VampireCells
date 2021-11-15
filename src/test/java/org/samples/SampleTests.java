@@ -1,12 +1,9 @@
 package org.samples;
 
 
-import com.spun.util.ArrayUtils;
 import com.spun.util.NumberUtils;
-import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
-import org.lambda.utils.Grid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,7 @@ public class SampleTests
   @Test
   public void testNeighborScenarios()
   {
-    final Cell [] possible = new Cell [] {new NormalCell (1), new DeadCell (), new NormalCell (99), new VampireCell() };
+    final Cell [] possible = new Cell [] {new AliveCell(1), new DeadCell (), new AliveCell(99), new VampireCell() };
     CombinationApprovals.verifyAllCombinations(this::getNext, possible, new Integer[]{0, 1, 2, 3, 4}, new Integer[]{0, 1, 2, 3});
   }
   private String getNext(Cell center, Cell topLeft, Cell top, Cell topRight, Cell left,
@@ -35,7 +32,7 @@ public class SampleTests
     int deadNeighborCount = 8 - aliveNeighborCount - vampireNeihborCount;
     List<Cell> neighbors = new ArrayList<>();
     for (int i = 0; i < aliveNeighborCount; i++) {
-      neighbors.add(new NormalCell(1));
+      neighbors.add(new AliveCell(1));
     }
     for (int i = 0; i < vampireNeihborCount; i++) {
       neighbors.add(new VampireCell());
