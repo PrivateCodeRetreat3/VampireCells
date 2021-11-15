@@ -4,9 +4,9 @@ import org.lambda.query.Query;
 
 import java.util.List;
 
-public class VampireCell extends NormalCell {
+public class VampireCell implements Cell {
     public VampireCell() {
-        super(100);
+
     }
 
     @Override
@@ -25,7 +25,7 @@ public class VampireCell extends NormalCell {
     }
 
     @Override
-    public NormalCell next(List<NormalCell> neighbours) {
+    public Cell next(List<Cell> neighbours) {
         var count = Query.where(neighbours, n -> n.isVampire()).size();
         if (2 <= count) {
             return new NormalCell(0);

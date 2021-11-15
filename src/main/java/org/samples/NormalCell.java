@@ -5,7 +5,7 @@ import org.lambda.query.Query;
 
 import java.util.List;
 
-public class NormalCell {
+public class NormalCell implements Cell {
     private int age;
 
     public NormalCell(int age) {
@@ -17,7 +17,7 @@ public class NormalCell {
         return isAlive() ? StringUtils.padNumber(this.age, 2) : "__";
     }
 
-    public NormalCell next(List<NormalCell> neighbours) {
+    public Cell next(List<Cell> neighbours) {
         var count = Query.where(neighbours, n -> n.isAlive()).size();
         var alive = (count == 2 && this.isAlive()) || count == 3;
         if (alive) {
@@ -34,7 +34,7 @@ public class NormalCell {
         }
     }
 
-    private NormalCell ageOneYear() {
+    private Cell ageOneYear() {
         if (99 <= age ) {
             return new VampireCell();
         }
