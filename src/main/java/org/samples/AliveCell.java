@@ -41,4 +41,8 @@ public class AliveCell implements Cell {
     public CellType getType() {
             return CellType.Alive;
     }
+
+    public int getAge() {
+        return age;
+    }
 }

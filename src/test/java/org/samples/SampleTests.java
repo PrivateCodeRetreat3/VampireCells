@@ -4,6 +4,7 @@ package org.samples;
 import com.spun.util.NumberUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.StoryBoard;
+import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +67,16 @@ public class SampleTests
       return board[0];
     });
     Approvals.verify(storyBoard);
-
   }
+
+  @Test
+  void testGuiBoard() {
+    var board = new Board();
+    board.put(1, 1, new AliveCell(97));
+    board.put(1, 2, new AliveCell(96));
+    board.put(1, 3, new AliveCell(95));
+    board.put(3, 3, new VampireCell());
+    AwtApprovals.verify(new GuiBoard(board));
+  }
+
 }

@@ -20,7 +20,7 @@ public class Board {
         return getCell(x, y).toString();
     }
 
-    private Cell getCell(Integer x, Integer y) {
+    public Cell getCell(Integer x, Integer y) {
         var point = new Point(x, y);
         return board.getOrDefault(point, new DeadCell());
     }
