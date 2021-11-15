@@ -61,4 +61,9 @@ public class GuiBoard implements Paintable {
     @Override
     public void registerRepaint(Action0 action0) {
     }
+
+    public Paintable advance() {
+        board = board.advance();
+        return this;
+    }
 }

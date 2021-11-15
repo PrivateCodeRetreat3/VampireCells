@@ -6,8 +6,11 @@ import org.approvaltests.Approvals;
 import org.approvaltests.StoryBoard;
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
+import org.approvaltests.reporters.ImageWebReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,13 +73,60 @@ public class SampleTests
   }
 
   @Test
+  @UseReporter(ImageWebReporter.class)
   void testGuiBoard() {
     var board = new Board();
     board.put(1, 1, new AliveCell(97));
     board.put(1, 2, new AliveCell(96));
     board.put(1, 3, new AliveCell(95));
     board.put(3, 3, new VampireCell());
-    AwtApprovals.verify(new GuiBoard(board));
+    verifyGui(board, 6);
   }
+
+  @Test
+  @UseReporter(ImageWebReporter.class)
+  void testExploration() {
+    var board = generateInterestingBoard();
+    verifyGui(board, 20);
+  }
+
+  private Board generateInterestingBoard() {
+    for (int i = 0; i < 1000; i++) {
+      var board = new Board();
+      for (int j = 0; j < 10; j++) {
+        board.put(NumberUtils.getRandomInt(0, 10), NumberUtils.getRandomInt(0, 10), getRandomCell());
+      }
+      var b1 = board;
+      var b2 = b1.advance();
+      for (int j = 0; j < 100; j++) {
+        b1 = b2;
+        b2 = b1.advance();
+      }
+      if (!b1.toString().equals(b2.toString())) {
+        return board;
+      }
+    }
+      // generate a board
+    // check if it's "interesting"
+    // return the board
+    return null;
+  }
+
+  private Cell getRandomCell() {
+    return NumberUtils.doRandomPercentage(80)?new AliveCell(NumberUtils.getRandomInt(1,99)): new VampireCell();
+  }
+
+  private void verifyGui(Board board, int numberOfFrames) {
+    var guiBoard = new GuiBoard(board);
+
+    AwtApprovals.verifySequence(numberOfFrames, Duration.ofSeconds(1), n -> {
+      if (n == 0){
+        return guiBoard;
+      }
+      return guiBoard.advance();
+    });
+  }
+
+
 
 }
