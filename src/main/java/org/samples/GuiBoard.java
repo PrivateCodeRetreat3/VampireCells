@@ -35,25 +35,27 @@ public class GuiBoard implements Paintable {
 
     private void paintCell(int x, int y, Graphics g) {
         var cell = board.getCell(x, y);
-        g.setColor(Color.WHITE);
-        g.drawRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        drawBorder(x, y, g);
         switch (cell.getType()) {
             case Alive -> {
-                g.setColor(Color.CYAN);
-                g.fillRect(x * CELL_SIZE + 1, y * CELL_SIZE + 1, CELL_SIZE - 1, CELL_SIZE - 1);
-                g.setColor(Color.BLACK);
-                AliveCell aliveCell = (AliveCell) cell;
-                SwingUtils.drawCenteredString(g, aliveCell.getAge()+"", x*CELL_SIZE+CELL_SIZE/2,y*CELL_SIZE+CELL_SIZE/2);
-            }
-            case Dead -> {
+                drawCell(x, y, g, Color.CYAN, ((AliveCell) cell).getAge() + "");
             }
             case Vampire -> {
-                g.setColor(Color.RED);
-                g.fillRect(x * CELL_SIZE + 1, y * CELL_SIZE + 1, CELL_SIZE - 1, CELL_SIZE - 1);
-                g.setColor(Color.BLACK);
-                SwingUtils.drawCenteredString(g, "V", x*CELL_SIZE+CELL_SIZE/2,y*CELL_SIZE+CELL_SIZE/2);
+                drawCell(x, y, g, Color.RED, "V");
             }
         }
+    }
+
+    private void drawCell(int x, int y, Graphics g, Color color, String text) {
+        g.setColor(color);
+        g.fillRect(x * CELL_SIZE + 1, y * CELL_SIZE + 1, CELL_SIZE - 1, CELL_SIZE - 1);
+        g.setColor(Color.BLACK);
+        SwingUtils.drawCenteredString(g, text, x * CELL_SIZE + CELL_SIZE / 2, y * CELL_SIZE + CELL_SIZE / 2);
+    }
+
+    private void drawBorder(int x, int y, Graphics g) {
+        g.setColor(Color.WHITE);
+        g.drawRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
 
     @Override
