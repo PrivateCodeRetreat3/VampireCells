@@ -1,5 +1,6 @@
 package org.samples;
 
+import com.spun.util.StringUtils;
 import org.lambda.query.Query;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class NormalCell {
 
     @Override
     public String toString() {
-        return isAlive() ? "" + this.age : ".";
+        return isAlive() ? StringUtils.padNumber(this.age, 2) : "__";
     }
 
     public NormalCell next(List<NormalCell> neighbours) {

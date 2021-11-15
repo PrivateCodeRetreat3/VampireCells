@@ -11,7 +11,7 @@ public class VampireCell extends NormalCell {
 
     @Override
     public String toString() {
-        return "V";
+        return "V ";
     }
 
     @Override
