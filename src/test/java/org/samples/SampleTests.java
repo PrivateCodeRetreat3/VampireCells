@@ -2,6 +2,8 @@ package org.samples;
 
 
 import com.spun.util.NumberUtils;
+import org.approvaltests.Approvals;
+import org.approvaltests.StoryBoard;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
 
@@ -50,4 +52,20 @@ public class SampleTests
     return center.next(neighbors).toString();
   }
 
+  @Test
+  void testBoard() {
+    var storyBoard = new StoryBoard();
+    var board = new Board[]{new Board()};
+    board[0].put(1, 1, new AliveCell(97));
+    board[0].put(1, 2, new AliveCell(96));
+    board[0].put(1, 3, new AliveCell(95));
+    board[0].put(3, 3, new VampireCell());
+    storyBoard.add(board[0]);
+    storyBoard.addFrames(6, () -> {
+      board[0] = board[0].advance();
+      return board[0];
+    });
+    Approvals.verify(storyBoard);
+
+  }
 }
