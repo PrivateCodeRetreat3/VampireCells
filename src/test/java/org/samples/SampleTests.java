@@ -28,6 +28,12 @@ public class SampleTests
     final Cell next = center.next(List.of(topLeft, topRight, left, top, right, bottomLeft, bottom, bottomRight));
     return next.toString();
   }
+
+  @Test
+  void name() {
+    getNext(new AliveCell(1), 0,1);
+  }
+
   private String getNext(Cell center, Integer aliveNeighborCount, Integer vampireNeihborCount) {
     int deadNeighborCount = 8 - aliveNeighborCount - vampireNeihborCount;
     List<Cell> neighbors = new ArrayList<>();

@@ -19,8 +19,9 @@ public class AliveCell implements Cell {
     }
 
     public Cell next(List<Cell> listOfNeighbours) {
-        var neighbours = new Queryable<Cell>(Cell.class);
-        neighbours.addAll(listOfNeighbours);
+//        var neighbours = new Queryable<Cell>(Cell.class);
+//        neighbours.addAll(listOfNeighbours);
+        var neighbours = Queryable.as(listOfNeighbours);
         var count = neighbours.where(c -> c.isAlive()).size();
         var isAlive = 2 <= count && count <= 3;
         if (isAlive) {
