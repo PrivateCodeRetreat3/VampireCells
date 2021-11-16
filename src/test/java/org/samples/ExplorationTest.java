@@ -35,7 +35,7 @@ public class ExplorationTest
   @UseReporter(ImageWebReporter.class)
   void testInteresting() {
     GuiBoard guiBoard = InterestingBoards.HEARTS_AND_SPADES;
-    AwtApprovals.verifySequence(guiBoard, 200, Duration.ofMillis(100), n -> guiBoard.advance());
+    AwtApprovals.verifySequence(guiBoard, 450, Duration.ofMillis(100), n -> guiBoard.advance());
   }
 
   public static GuiBoard createBoard(int xOffset, int yOffset, Tuple<Point,Cell>... cells){
