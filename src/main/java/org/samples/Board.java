@@ -6,10 +6,9 @@ import org.lambda.utils.Grid;
 
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 public class Board {
-    private HashMap<Point, Cell> board = new HashMap<>();
+    HashMap<Point, Cell> board = new HashMap<>();
 
     @Override
     public String toString() {
