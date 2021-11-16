@@ -106,7 +106,9 @@ public class ExplorationTest
       return board;
     }
     return null;
-  }public static Board isInteresting(Board board) {
+  }
+  
+  public static Board isInteresting(Board board) {
     var b1 = board;
     var b2 = b1.advance();
     for (int j = 0; j < 900; j++) {
