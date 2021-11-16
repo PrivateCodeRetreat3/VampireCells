@@ -96,11 +96,11 @@ public class SampleTests
     board.put(7, 5, new AliveCell(95));
     var guiBoard = new GuiBoard(board);
 
-    AwtApprovals.verifySequenceWithTimings(115, n ->  {
+    AwtApprovals.verifySequenceWithTimings(111, n ->  {
       if (n == 0){
         return new Tuple<>(guiBoard, Duration.ofSeconds(1));
       }
-      long t = (14 < n && n < 100) ? 100: 1000;
+      long t = (9 < n && n < 100) ? 100: 1000;
       return new Tuple<>(guiBoard.advance(), Duration.ofMillis(t));
     });
   }
