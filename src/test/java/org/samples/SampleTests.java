@@ -2,6 +2,7 @@ package org.samples;
 
 
 import com.spun.util.NumberUtils;
+import com.spun.util.Tuple;
 import org.approvaltests.Approvals;
 import org.approvaltests.StoryBoard;
 import org.approvaltests.awt.AwtApprovals;
@@ -81,6 +82,27 @@ public class SampleTests
     board.put(1, 3, new AliveCell(95));
     board.put(3, 3, new VampireCell());
     verifyGui(board, 6);
+  }
+
+  @Test
+  @UseReporter(ImageWebReporter.class)
+  void testGuiToad() {
+    var board = new Board();
+    board.put(4,4, new AliveCell(97));
+    board.put(5,4, new AliveCell(96));
+    board.put(6, 4, new AliveCell(95));
+    board.put(5,5, new AliveCell(97));
+    board.put(6,5, new AliveCell(96));
+    board.put(7, 5, new AliveCell(95));
+    var guiBoard = new GuiBoard(board);
+
+    AwtApprovals.verifySequenceWithTimings(110, n ->  {
+      if (n == 0){
+        return new Tuple<>(guiBoard, Duration.ofSeconds(1));
+      }
+      long t = (7 < n && n < 100) ? 100: 1000;
+      return new Tuple<>(guiBoard.advance(), Duration.ofMillis(t));
+    });
   }
 
   @Test
