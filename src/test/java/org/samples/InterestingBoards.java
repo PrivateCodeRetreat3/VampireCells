@@ -12,6 +12,6 @@ public class InterestingBoards {
 
     static GuiBoard LOTS_OF_VAMPIRES = ExplorationTest.createBoard(1, 1, __(0, 6, new AliveCell(1)), __(2, 1, new VampireCell()), __(3, 8, new VampireCell()), __(5, 8, new AliveCell(97)), __(6, 7, new AliveCell(97)), __(6, 9, new AliveCell(1)), __(7, 7, new AliveCell(1)), __(8, 6, new AliveCell(90)), __(9, 9, new AliveCell(1))).withWidth(34).withHeight(15);
     static GuiBoard VAMPIRES_20 = ExplorationTest.createBoard(1,1, __(0, 5, new VampireCell()), __(2, 7, new AliveCell(1)), __(2, 9, new VampireCell()), __(3, 2, new AliveCell(1)), __(4, 2, new AliveCell(1)), __(4, 3, new AliveCell(95)), __(5, 1, new AliveCell(95)), __(5, 2, new AliveCell(1)), __(9, 1, new AliveCell(1))).withWidth(34).withHeight(34);
-    static GuiBoard HEARTS_AND_SPADES = ExplorationTest.createBoard(26,2,__(0, 6, new AliveCell(1)), __(2, 1, new AliveCell(94)), __(2, 4, new AliveCell(1)), __(3, 0, new VampireCell()), __(3, 1, new AliveCell(93)), __(3, 4, new AliveCell(94)), __(4, 1, new AliveCell(95)), __(4, 4, new AliveCell(1)), __(4, 7, new AliveCell(1))).withWidth(60).withHeight(40);
+    static GuiBoard THE_VAMPIRE = ExplorationTest.createBoard(26,2,__(0, 6, new AliveCell(1)), __(2, 1, new AliveCell(94)), __(2, 4, new AliveCell(1)), __(3, 0, new VampireCell()), __(3, 1, new AliveCell(93)), __(3, 4, new AliveCell(94)), __(4, 1, new AliveCell(95)), __(4, 4, new AliveCell(1)), __(4, 7, new AliveCell(1))).withWidth(60).withHeight(50);
 
 }
