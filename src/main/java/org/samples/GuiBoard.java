@@ -14,20 +14,28 @@ public class GuiBoard implements Paintable {
     }
 
     private static final int CELL_SIZE = 20;
-    private static final int WIDTH = 10;
+       int width = 10;
+    int height = 10;
 
+    public GuiBoard withWidth(int width){
+        this.width = width;
+        return this;
+    }    public GuiBoard withHeight(int height){
+        this.height = height;
+        return this;
+    }
     @Override
     public Dimension getSize() {
-        return new Dimension(CELL_SIZE * WIDTH + 1, CELL_SIZE * WIDTH + 1);
+        return new Dimension(CELL_SIZE * width + 1, CELL_SIZE * height + 1);
     }
 
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, CELL_SIZE * WIDTH, CELL_SIZE * WIDTH);
+        g.fillRect(0, 0, CELL_SIZE * width, CELL_SIZE * height);
 
-        for (int x = 0; x < WIDTH; x++) {
-            for (int y = 0; y < WIDTH; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 paintCell(x, y, g);
             }
         }
