@@ -31,11 +31,11 @@ public class ExplorationTest
     guiBoard = new GuiBoard(board).withWidth(34).withHeight(34);
     AwtApprovals.verifySequence(guiBoard, 200, Duration.ofMillis(100), n -> guiBoard.advance());
   }
-  //@Test
+  @Test
   @UseReporter(ImageWebReporter.class)
   void testInteresting() {
-    GuiBoard guiBoard = InterestingBoards.THE_VAMPIRE;
-    AwtApprovals.verifySequence(guiBoard, 650, Duration.ofMillis(100), n -> guiBoard.advance());
+    GuiBoard guiBoard = InterestingBoards.VAMPIRE_GENERATOR;
+    AwtApprovals.verifySequence(guiBoard, 65, Duration.ofMillis(100), n -> guiBoard.advance());
   }
 
   public static GuiBoard createBoard(int xOffset, int yOffset, Tuple<Point,Cell>... cells){
